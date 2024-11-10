@@ -2,6 +2,7 @@ package com.app.gestion.app.controller;
 
 import com.app.gestion.app.model.Contrato;
 import com.app.gestion.app.service.ContratoService;
+import com.google.common.base.Preconditions;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +32,7 @@ public class ContratoController {
 
     @RequestMapping(path = "/app/eliminarContrato/{id}", method = RequestMethod.DELETE)
     private void eliminarContrato(@PathVariable("id")Integer idContrato){
+        Preconditions.checkArgument(idContrato > 0, "El id debe ser mayor que cero");
         service.eliminarContrato(idContrato);
     }
 

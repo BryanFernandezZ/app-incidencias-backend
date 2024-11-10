@@ -6,6 +6,7 @@ import com.app.gestion.app.dto.LoginRequestDTO;
 import com.app.gestion.app.dto.LoginResponseDTO;
 import com.app.gestion.app.model.Cuenta;
 import com.app.gestion.app.repository.CuentaRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class AuthServiceImpl implements AuthService {

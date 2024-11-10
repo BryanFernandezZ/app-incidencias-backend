@@ -2,10 +2,13 @@ package com.app.gestion.app.service;
 
 import com.app.gestion.app.model.Cliente;
 import com.app.gestion.app.repository.ClienteRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ClienteServiceImp implements ClienteService{
 
@@ -14,7 +17,17 @@ public class ClienteServiceImp implements ClienteService{
 
     @Override
     public List<Cliente> obtenerCliente() {
-        return repository.findAll();
+        List<Cliente> clientes = repository.findAll();
+
+        List<Cliente> nuevosClientes = clientes.stream().map(cliente -> {
+            String nombreCliente = cliente.getNombre();
+            //  " Juan     " -> "Juan"
+            String nombreClienteTrim = StringUtils.trim(nombreCliente);
+            cliente.setNombre(nombreClienteTrim);
+            return cliente;
+        }).collect(Collectors.toList());
+
+        return nuevosClientes;
     }
 
     @Override
