@@ -1,5 +1,6 @@
 package com.app.gestion.app.service;
 
+import com.app.gestion.app.dto.ContratoDispositivoResponseDto;
 import com.app.gestion.app.model.Contrato;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface ContratoService {
     void guardarContrato(Contrato contrato);
     void actualizarContrato(Contrato contrato);
     void eliminarContrato (Integer idContrato);
-
+    List<ContratoDispositivoResponseDto> obtenerContratosCliente(Integer idContrato);
 }

@@ -40,4 +40,8 @@ public class Cliente {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Contrato> contrato= new ArrayList<>();
+
+    public Cliente(Integer idCliente) {
+        this.idCliente = idCliente;
+    }
 }
