@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -31,6 +32,8 @@ public class Incidencia {
     private Boolean presencial;
     private Boolean solucionado;
 
+    private LocalDateTime fechaRegistro;
+
     private Integer usuarioAsignado;
 
     @JsonIgnore
@@ -48,6 +51,12 @@ public class Incidencia {
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
+    @PrePersist
+    public void prePersist() {
+        if (this.fechaRegistro == null) {
+            this.fechaRegistro = LocalDateTime.now();
+        }
+    }
 
     public Incidencia(String asunto, String detalle, Integer calificacion, Boolean pendiente, Boolean presencial, Boolean solucionado, Integer usuarioAsignado, Cliente cliente, Contrato contrato) {
         this.asunto = asunto;
