@@ -35,9 +35,11 @@ public class Cliente {
     private Cuenta cuenta;
 
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Incidencia> incidencias= new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Contrato> contrato= new ArrayList<>();
 
